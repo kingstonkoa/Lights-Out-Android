@@ -25,7 +25,7 @@ public class Splash extends Activity {
         final Animation slideUpAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
         final Animation fadeOutAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
         final Animation fadeInAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_in);
-
+        start.setVisibility(View.GONE);
         iv.startAnimation(fadeInAnim);
         fadeInAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -52,6 +52,7 @@ public class Splash extends Activity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+                start.setVisibility(View.VISIBLE);
                 start.startAnimation(slideUpAnim);
                 //finish();
                 //Intent i = new Intent(Splash.this, MainActivity.class);

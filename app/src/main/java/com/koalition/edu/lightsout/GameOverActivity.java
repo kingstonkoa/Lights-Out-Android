@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
@@ -15,20 +16,36 @@ import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
 
+import org.w3c.dom.Text;
+
 
 public class GameOverActivity extends AppCompatActivity {
     private TextView score;
+    private TextView bestScoreText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
         score = (TextView) findViewById(R.id.tv_score);
+        bestScoreText = (TextView) findViewById(R.id.tv_bestscore);
+
+        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferencesScore.edit();
+        int highScore = preferencesScore.getInt("HighScore", -1);
+        //change to store the current score also in preferenceScore
+        if(Integer.parseInt(score.getText().toString()) > highScore)
+        {
+            editor.putInt("HighScore",Integer.parseInt(score.getText().toString()));
+            editor.apply();
+            bestScoreText.setText("That's your best score!");
+        }
+
 
         ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentDescription(
-                        "Can you beat my score: "+score.getText().toString())
+                        "Can you beat my score: " + score.getText().toString())
                 .setContentUrl(Uri.parse("https://www.facebook.com/LightsOutMobile"))
                 .build();
         fbShareButton.setShareContent(content);

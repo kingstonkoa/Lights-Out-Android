@@ -1,8 +1,10 @@
 package com.koalition.edu.lightsout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,19 +16,20 @@ import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         // Get the shared preferences
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
-
+        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferencesScore.edit();
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
+
+            editor.putInt("HighScore",0); // STORE INITIAL SCORE OF 0
+            editor.apply();
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, OnboardingActivity.class);
             startActivity(onboarding);
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
+
         Intent i = new Intent(this, Splash.class);
          startActivity(i);
 

@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="285"
+            android:text="50"
             android:id="@+id/tv_score"
             android:layout_gravity="center_horizontal|top"
             android:textSize="50dp"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="That's your best score!"
+            android:text=""
             android:id="@+id/tv_bestscore"
             android:layout_gravity="center_horizontal|top"
             android:textSize="30sp"
