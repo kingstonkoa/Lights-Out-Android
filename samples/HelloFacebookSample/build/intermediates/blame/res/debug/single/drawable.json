@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\res\\merged\\debug\\drawable\\messenger_button_blue_bg_round.xml",
-        "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\drawable\\messenger_button_blue_bg_round.xml"
-    },
-    {
         "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\res\\merged\\debug\\drawable\\icon.png",
         "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\res\\drawable\\icon.png"
+    },
+    {
+        "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\res\\merged\\debug\\drawable\\messenger_button_blue_bg_round.xml",
+        "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\drawable\\messenger_button_blue_bg_round.xml"
     },
     {
         "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\samples\\HelloFacebookSample\\build\\intermediates\\res\\merged\\debug\\drawable\\messenger_button_white_bg_round.xml",

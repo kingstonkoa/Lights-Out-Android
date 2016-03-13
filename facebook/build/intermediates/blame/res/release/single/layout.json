@@ -4,12 +4,12 @@
         "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\res\\layout\\messenger_button_send_blue_small.xml"
     },
     {
-        "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_large.xml",
-        "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\res\\layout\\messenger_button_send_white_large.xml"
-    },
-    {
         "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_small.xml",
         "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\res\\layout\\messenger_button_send_white_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\build\\intermediates\\res\\merged\\release\\layout\\messenger_button_send_white_large.xml",
+        "source": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\res\\layout\\messenger_button_send_white_large.xml"
     },
     {
         "merged": "C:\\Users\\KingstonAnthony\\Desktop\\AndroidStudioProjects\\LightsOut\\facebook\\build\\intermediates\\res\\merged\\release\\layout\\com_facebook_activity_layout.xml",

@@ -9,28 +9,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
 
 
 public class GameOverActivity extends AppCompatActivity {
-
+    private TextView score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
+        score = (TextView) findViewById(R.id.tv_score);
 
         ShareButton fbShareButton = (ShareButton) findViewById(R.id.share_btn);
         ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("http://google.com"))
+                .setContentDescription(
+                        "Can you beat my score: "+score.getText().toString())
+                .setContentUrl(Uri.parse("https://www.facebook.com/LightsOutMobile"))
                 .build();
         fbShareButton.setShareContent(content);
 
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

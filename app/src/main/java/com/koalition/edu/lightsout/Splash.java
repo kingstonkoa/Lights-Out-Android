@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -18,29 +19,14 @@ public class Splash extends Activity {
         setContentView(R.layout.splashh);
 
         final ImageView iv = (ImageView) findViewById(R.id.imageView);
+        final Button start = (Button) findViewById(R.id.button_start);
         final Animation rotateAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
         final Animation slideDownAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down);
+        final Animation slideUpAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_up);
         final Animation fadeOutAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_out);
         final Animation fadeInAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.abc_fade_in);
 
-        iv.startAnimation(fadeOutAnim);
-        fadeOutAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                iv.startAnimation(fadeInAnim);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
+        iv.startAnimation(fadeInAnim);
         fadeInAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -50,9 +36,6 @@ public class Splash extends Activity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 iv.startAnimation(fadeOutAnim);
-                //finish();
-                //Intent i = new Intent(Splash.this, MainActivity.class);
-               // startActivity(i);
             }
 
             @Override
@@ -61,11 +44,31 @@ public class Splash extends Activity {
             }
         });
 
-        iv.setOnClickListener(new View.OnClickListener() {
+        fadeOutAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                start.startAnimation(slideUpAnim);
+                //finish();
+                //Intent i = new Intent(Splash.this, MainActivity.class);
+                //startActivity(i);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 finish();
-                Intent i = new Intent(Splash.this, MainActivity.class);
+                Intent i = new Intent(Splash.this, GameOverActivity.class);
                  startActivity(i);
             }
 

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return;
         }
-        Intent i = new Intent(this, GameOverActivity.class);
+        Intent i = new Intent(this, Splash.class);
          startActivity(i);
 
 

@@ -5,13 +5,13 @@ package="com.koalition.edu.lightsout">
 
 <uses-permission android:name="android.permission.INTERNET" />
 
-<application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name"
-    android:supportsRtl="true" android:theme="@style/AppTheme"
+<application android:allowBackup="true" android:icon="@mipmap/logo" android:label="@string/app_name"
+    android:supportsRtl="true"  android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
     android:debuggable="true"
     >
     <!--remove debbug = true in final-->
     <activity android:name=".MainActivity" android:hardwareAccelerated="false" android:label="@string/app_name"
-        android:theme="@style/AppTheme.NoActionBar">
+        >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,7 @@ package="com.koalition.edu.lightsout">
 
     <activity android:name="com.koalition.edu.lightsout.GameOverActivity"
         android:label="@string/title_activity_game_over"
-        android:theme="@style/AppTheme.NoActionBar"
+
         android:screenOrientation="landscape"
         ></activity>
 
