@@ -1,9 +1,12 @@
 package com.koalition.edu.lightsout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,10 +19,24 @@ import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {
+    final static int AR_PENDINGINTENT = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /** For notifications */
+        Intent arIntent = new Intent();
+        arIntent.setClass(getBaseContext(), FreeCoinReceiver.class);
+        PendingIntent arPendingIntent = PendingIntent.getBroadcast(getBaseContext(), AR_PENDINGINTENT,arIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // Call AlarmManager to broadcast intent
+        AlarmManager alarmManager
+                = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + 2,
+                arPendingIntent);
+
 
         // Get the shared preferences
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);

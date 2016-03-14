@@ -2,6 +2,7 @@ package com.koalition.edu.lightsout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -22,9 +23,14 @@ import org.w3c.dom.Text;
 public class GameOverActivity extends AppCompatActivity {
     private TextView score;
     private TextView bestScoreText;
+    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.cinema);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
         score = (TextView) findViewById(R.id.tv_score);
@@ -53,6 +59,12 @@ public class GameOverActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mediaPlayer.start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
