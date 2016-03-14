@@ -16,6 +16,7 @@ import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
 
+            dbHelper.insertPowerUp(new PowerUp(1, "Freeze", 500));
+            dbHelper.insertPowerUp(new PowerUp(2, "Slow", 300));
+            dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
             editor.putInt("HighScore",0); // STORE INITIAL SCORE OF 0
             editor.apply();
             // Start the onboarding Activity
@@ -40,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Intent i = new Intent(this, Splash.class);
-         startActivity(i);
-
+        startActivity(i);
 
 
     }
