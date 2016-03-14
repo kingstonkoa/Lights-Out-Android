@@ -13,6 +13,7 @@ import android.widget.ImageView;
  * Created by Kingston on 3/5/2016.
  */
 public class Splash extends Activity {
+    DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
