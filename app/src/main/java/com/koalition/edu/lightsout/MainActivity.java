@@ -2,6 +2,7 @@ package com.koalition.edu.lightsout;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,26 +20,11 @@ import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    final static int AR_PENDINGINTENT = 1;
-
     DatabaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /** For notifications */
-        Intent arIntent = new Intent();
-        arIntent.setClass(getBaseContext(), FreeCoinReceiver.class);
-        PendingIntent arPendingIntent = PendingIntent.getBroadcast(getBaseContext(), AR_PENDINGINTENT,arIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        // Call AlarmManager to broadcast intent
-        AlarmManager alarmManager
-                = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 2,
-                arPendingIntent);
-
 
         // Get the shared preferences
         SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
@@ -46,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferencesScore.edit();
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
-
+            dbHelper = new DatabaseHelper(getBaseContext());
             dbHelper.insertPowerUp(new PowerUp(1, "Freeze", 500));
             dbHelper.insertPowerUp(new PowerUp(2, "Slow", 300));
             dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
@@ -61,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Intent i = new Intent(this, Splash.class);
-        startActivity(i);
+        //Intent i = new Intent(this, Splash.class);
+        //startActivity(i);
 
 
     }

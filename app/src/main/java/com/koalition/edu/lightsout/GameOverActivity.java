@@ -29,7 +29,7 @@ public class GameOverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.cinema);
+        //mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.cinema);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
@@ -63,7 +63,7 @@ public class GameOverActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        mediaPlayer.start();
+        //mediaPlayer.start();
     }
 
     @Override
