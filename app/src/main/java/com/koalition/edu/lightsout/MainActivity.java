@@ -13,14 +13,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.facebook.FacebookSdk;
 
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
+    ImageView playGameButton;
+    ImageView shopButton;
+    ImageView settingsButton;
+
+    ImageView playGameButtonOnClick;
+    ImageView shopButtonOnClick;
+    ImageView settingsButtonOnClick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +59,97 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        //Intent i = new Intent(this, Splash.class);
-        //startActivity(i);
+        playGameButton = (ImageView) findViewById(R.id.iv_playgamewht);
+        shopButton = (ImageView) findViewById(R.id.iv_shopwht);
+        settingsButton = (ImageView) findViewById(R.id.iv_settingswht);
+
+        playGameButtonOnClick = (ImageView) findViewById(R.id.iv_playgameblk);
+        shopButtonOnClick = (ImageView) findViewById(R.id.iv_shopblk);
+        settingsButtonOnClick = (ImageView) findViewById(R.id.iv_settingsblk);
+
+        /* hide onclick buttons**/
+        playGameButtonOnClick.setVisibility(View.INVISIBLE);
+        shopButtonOnClick.setVisibility(View.INVISIBLE);
+        settingsButtonOnClick.setVisibility(View.INVISIBLE);
+
+        playGameButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+
+                        //=====Write down your Finger Pressed code here
+                        playGameButton.setVisibility(View.INVISIBLE);
+                        playGameButtonOnClick.setVisibility(View.VISIBLE);
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+
+                        //=====Write down you code Finger Released code here
+                        playGameButtonOnClick.setVisibility(View.INVISIBLE);
+                        playGameButton.setVisibility(View.VISIBLE);
+                        Intent i = new Intent(MainActivity.this, GameOverActivity.class);
+                        startActivity(i);
+                        return true;
+                }
+                return false;
+
+            }
+        });
+
+        shopButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+
+                        //=====Write down your Finger Pressed code here
+                        shopButton.setVisibility(View.INVISIBLE);
+                        shopButtonOnClick.setVisibility(View.VISIBLE);
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+
+                        //=====Write down you code Finger Released code here
+                        shopButtonOnClick.setVisibility(View.INVISIBLE);
+                        shopButton.setVisibility(View.VISIBLE);
+                        return true;
+                }
+                return false;
+
+            }
+        });
+
+        settingsButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+
+                        //=====Write down your Finger Pressed code here
+                        settingsButton.setVisibility(View.INVISIBLE);
+                        settingsButtonOnClick.setVisibility(View.VISIBLE);
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+
+                        //=====Write down you code Finger Released code here
+                        settingsButtonOnClick.setVisibility(View.INVISIBLE);
+                        settingsButton.setVisibility(View.VISIBLE);
+                        return true;
+                }
+                return false;
+
+            }
+        });
+
+
 
 
     }
