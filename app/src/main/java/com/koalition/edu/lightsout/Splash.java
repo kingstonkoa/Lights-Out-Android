@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -73,20 +74,21 @@ public class Splash extends Activity {
 
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
+                int seconds = 3;
+                //if(!preferences.getBoolean("onboarding_complete",false)) {
+                    Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
+                    PendingIntent pendingIntent
+                            = PendingIntent.getBroadcast(getBaseContext(),
+                            BC_PENDINGINTENT,
+                            broadcastIntent,
+                            PendingIntent.FLAG_CANCEL_CURRENT);
 
-                int seconds = 2;
-
-                Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
-                PendingIntent pendingIntent
-                        = PendingIntent.getBroadcast(getBaseContext(),
-                        BC_PENDINGINTENT,
-                        broadcastIntent,
-                        PendingIntent.FLAG_CANCEL_CURRENT);
-
-                ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
-                        .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                                SystemClock.elapsedRealtime() + (seconds * 1000),
-                                pendingIntent);
+                    ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
+                            .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                                    SystemClock.elapsedRealtime() + (seconds * 1000),
+                                    pendingIntent);
+                //}
 
                 finish();
                 Intent i = new Intent(Splash.this, MainActivity.class);
