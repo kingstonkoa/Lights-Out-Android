@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
 /**
@@ -15,6 +16,7 @@ import android.support.v4.app.NotificationCompat;
 public class FreeCoinReceiver extends BroadcastReceiver {
 
     static int count = 0; // replace this with values from your DB
+    final static int TIMER_SEC = 10;
     final static int MA_PENDINGINTENT = 0;
     final static int NOTIF_ID = 0;
 
@@ -49,7 +51,7 @@ public class FreeCoinReceiver extends BroadcastReceiver {
 
         // Get the shared preferences
         SharedPreferences preferences =
-                context.getSharedPreferences("my_preferences", 0x0000); // IDK WHY 0X0000
+                PreferenceManager.getDefaultSharedPreferences(context);
 
         // Set onboarding_complete to true
         preferences.edit()

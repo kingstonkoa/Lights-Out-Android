@@ -3,17 +3,13 @@ package com.koalition.edu.lightsout;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -21,7 +17,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.facebook.FacebookSdk;
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,16 +30,33 @@ public class MainActivity extends AppCompatActivity {
     ImageView shopButtonOnClick;
     ImageView settingsButtonOnClick;
 
+    private MediaPlayer mediaPlayer;
+    SharedPreferences sharedPreferences;
     final static int BC_PENDINGINTENT = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.mainmenu);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
+        // Get the solo preferences (only for this activity)
+        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
         // Get the shared preferences
-        SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
-        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferencesScore.edit();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // music initial
+        editor.putBoolean("Music", true);
+        editor.apply();
+        editor.putBoolean("SoundFX", true);
+        editor.apply();
+
+        System.out.println("If contains music onCreate: " + preferences.contains("Music"));
+
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
             dbHelper = new DatabaseHelper(getBaseContext());
@@ -53,19 +66,9 @@ public class MainActivity extends AppCompatActivity {
             dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
 
             editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
-            editor.putInt("Music",1);
-            editor.putInt("SoundFX",1);
+            editor.putBoolean("Music", true);
+            editor.putBoolean("SoundFX", true);
             editor.apply();
-            // Start the onboarding Activity
-            Intent onboarding = new Intent(this, OnboardingActivity.class);
-            startActivity(onboarding);
-
-
-
-
-            // Close the main Activity
-            finish();
-            return;
         }
 
         playGameButton = (ImageView) findViewById(R.id.iv_playgamewht);
@@ -99,8 +102,17 @@ public class MainActivity extends AppCompatActivity {
                         //=====Write down you code Finger Released code here
                         playGameButtonOnClick.setVisibility(View.INVISIBLE);
                         playGameButton.setVisibility(View.VISIBLE);
-                        Intent i = new Intent(MainActivity.this, GameOverActivity.class);
-                        startActivity(i);
+                        // Get the solo preferences (only for this activity)
+                        SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+                        if(!preferences.getBoolean("onboarding_complete",false)) {
+                            // Start the onboarding Activity
+                            Intent onboarding = new Intent(getBaseContext(), OnboardingActivity.class);
+                            startActivity(onboarding);
+                        }
+                        else {
+                            Intent i = new Intent(MainActivity.this, GameOverActivity.class);
+                            startActivity(i);
+                        }
                         return true;
                 }
                 return false;
@@ -173,13 +185,36 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Get the shared preferences
-        SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
-        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferencesScore.edit();
+//        preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
 
-// check if new coins
-        if(preferences.getBoolean("getsFreeCoins", true)){
-            int seconds = 3;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        System.out.println("ANO DAW PO: " + sharedPreferences.getBoolean("Music", false));
+        System.out.println("PAG ETO TRU >:( " + sharedPreferences.getBoolean("Music", true));
+        System.out.println("iyak if false: " + sharedPreferences.contains("Music"));
+        System.out.println("free coins dapat true: " + sharedPreferences.contains("getsFreeCoins"));
+
+        // MUSIC TUGS TUGS
+
+        if(sharedPreferences.getBoolean("Music", false)) {
+//                mediaPlayer.setOnPreparedListener(this);
+//                mediaPlayer.prepareAsync();
+//            if(!mediaPlayer.isPlaying())
+            mediaPlayer.setVolume(1.0f,1.0f);
+
+        } else
+        {
+            mediaPlayer.setVolume(0.0f, 0.0f);
+//            mediaPlayer.stop();
+//            mediaPlayer.reset();
+
+//            mediaPlayer.release();
+        }
+
+        // check if new coins
+        if(sharedPreferences.getBoolean("getsFreeCoins", false)){
+            System.out.println("dito pumasok ang koya");
+            int seconds = FreeCoinReceiver.TIMER_SEC;
             Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
             PendingIntent pendingIntent
                     = PendingIntent.getBroadcast(getBaseContext(),
@@ -192,7 +227,10 @@ public class MainActivity extends AppCompatActivity {
                             SystemClock.elapsedRealtime() + (seconds * 1000),
                             pendingIntent);
 
-            editor.putBoolean("getsFreeCoins", false);
+            editor.putBoolean("getsFreeCoins", false).apply();
+            /** toast */
+            Toast.makeText(getBaseContext(), "YOU GET 100 COINS NIGGUH",
+                    Toast.LENGTH_LONG).show();
         }
         /** checks if opened from notification */
 //        Intent intent = this.getIntent();
@@ -238,4 +276,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onPrepared(MediaPlayer player) {
+        mediaPlayer.start();
+    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        mediaPlayer.stop();
+//    }
 }
