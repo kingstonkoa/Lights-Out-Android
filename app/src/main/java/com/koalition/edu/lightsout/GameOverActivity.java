@@ -1,6 +1,5 @@
 package com.koalition.edu.lightsout;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -16,8 +14,6 @@ import android.widget.TextView;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
-
-import org.w3c.dom.Text;
 
 
 public class GameOverActivity extends AppCompatActivity {
@@ -29,7 +25,8 @@ public class GameOverActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.cinema);
+//        mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.mainmenu);
+//        mediaPlayer.start();
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);

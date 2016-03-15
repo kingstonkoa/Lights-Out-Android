@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
 /**
@@ -50,7 +51,7 @@ public class FreeCoinReceiver extends BroadcastReceiver {
 
         // Get the shared preferences
         SharedPreferences preferences =
-                context.getSharedPreferences("my_preferences", 0x0000); // IDK WHY 0X0000
+                PreferenceManager.getDefaultSharedPreferences(context);
 
         // Set onboarding_complete to true
         preferences.edit()

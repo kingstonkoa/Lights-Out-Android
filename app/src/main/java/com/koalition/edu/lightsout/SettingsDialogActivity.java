@@ -35,6 +35,8 @@ public class SettingsDialogActivity extends Activity {
     ImageView resetStatus;
 
     SharedPreferences preferences;
+    boolean isMusic;
+    boolean isSoundFX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,27 +64,29 @@ public class SettingsDialogActivity extends Activity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = preferences.edit();
-        int isMusic = preferences.getInt("Music", -1);
-        int isSoundFX = preferences.getInt("SoundFX", -1);
+        isMusic = preferences.getBoolean("Music", true);
+        System.out.println("PAG TRUE GG: " + preferences.getBoolean("Music", true));
+        System.out.println("PAG FALSE GG: " + preferences.getBoolean("Music", false));
+        isSoundFX = preferences.getBoolean("SoundFX", true);
 
         /*initial dialog**/
-        if(isMusic == 1)
+        if(isMusic)
         {
             musicNotChecked.setVisibility(View.INVISIBLE);
             musicChecked.setVisibility(View.VISIBLE);
         }
-        else if(isMusic == 0)
+        else
         {
             musicChecked.setVisibility(View.INVISIBLE);
             musicNotChecked.setVisibility(View.VISIBLE);
         }
 
-        if(isSoundFX == 1)
+        if(isSoundFX)
         {
             soundFxNotChecked.setVisibility(View.INVISIBLE);
             soundFxChecked.setVisibility(View.VISIBLE);
         }
-        else if(isMusic == 0)
+        else
         {
             soundFxChecked.setVisibility(View.INVISIBLE);
             soundFxNotChecked.setVisibility(View.VISIBLE);
@@ -91,6 +95,7 @@ public class SettingsDialogActivity extends Activity {
         musicChecked.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                System.out.println("wtf");
                 switch (event.getAction() & MotionEvent.ACTION_MASK) {
                     case MotionEvent.ACTION_DOWN:
                     case MotionEvent.ACTION_POINTER_DOWN:
@@ -104,8 +109,9 @@ public class SettingsDialogActivity extends Activity {
                     case MotionEvent.ACTION_POINTER_UP:
 
                         //=====Write down you code Finger Released code here
-                        editor.putInt("Music",0);
+                        editor.putBoolean("Music",false);
                         editor.commit();
+                        isMusic = false;
                         return true;
                 }
                 return false;
@@ -129,8 +135,9 @@ public class SettingsDialogActivity extends Activity {
                     case MotionEvent.ACTION_POINTER_UP:
 
                         //=====Write down you code Finger Released code here
-                        editor.putInt("Music",1);
+                        editor.putBoolean("Music",true);
                         editor.commit();
+                        isMusic = true;
                         return true;
                 }
                 return false;
@@ -154,8 +161,9 @@ public class SettingsDialogActivity extends Activity {
                     case MotionEvent.ACTION_POINTER_UP:
 
                         //=====Write down you code Finger Released code here
-                        editor.putInt("SoundFX",0);
+                        editor.putBoolean("SoundFX",false);
                         editor.commit();
+                        isSoundFX=false;
                         return true;
                 }
                 return false;
@@ -179,8 +187,9 @@ public class SettingsDialogActivity extends Activity {
                     case MotionEvent.ACTION_POINTER_UP:
 
                         //=====Write down you code Finger Released code here
-                        editor.putInt("SoundFX",1);
+                        editor.putBoolean("SoundFX",true);
                         editor.commit();
+                        isSoundFX = true;
                         return true;
                 }
                 return false;
