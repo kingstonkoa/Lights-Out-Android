@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
 
             editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
-            editor.putInt("Music",1);
+            editor.putInt("Music", 1);
             editor.putInt("SoundFX",1);
             editor.apply();
             // Start the onboarding Activity
@@ -176,9 +176,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferencesScore.edit();
 
-// check if new coins
-        if(preferences.getBoolean("getsFreeCoins", true)){
-            int seconds = 3;
+        // check if new coins
+        if(preferences.getBoolean("getsFreeCoins", false)){
+            System.out.println("dito pumasok ang koya");
+            int seconds = FreeCoinReceiver.TIMER_SEC;
             Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
             PendingIntent pendingIntent
                     = PendingIntent.getBroadcast(getBaseContext(),
@@ -192,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
                             pendingIntent);
 
             editor.putBoolean("getsFreeCoins", false);
+            /** toast */
+            Toast.makeText(getBaseContext(), "YOU GET 100 COINS NIGGUH",
+                    Toast.LENGTH_LONG).show();
         }
         /** checks if opened from notification */
 //        Intent intent = this.getIntent();

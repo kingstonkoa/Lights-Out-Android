@@ -76,7 +76,8 @@ public class Splash extends Activity {
             public void onClick(View v) {
                 SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
                 int seconds = 3;
-                //if(!preferences.getBoolean("onboarding_complete",false)) {
+                if(!preferences.getBoolean("onboarding_complete",false)) {
+                    System.out.println("pasok ang koy?");
                     Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
                     PendingIntent pendingIntent
                             = PendingIntent.getBroadcast(getBaseContext(),
@@ -88,7 +89,7 @@ public class Splash extends Activity {
                             .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                                     SystemClock.elapsedRealtime() + (seconds * 1000),
                                     pendingIntent);
-                //}
+                }
 
                 finish();
                 Intent i = new Intent(Splash.this, MainActivity.class);
