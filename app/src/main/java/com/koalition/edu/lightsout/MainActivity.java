@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView playGameButtonOnClick;
     ImageView shopButtonOnClick;
     ImageView settingsButtonOnClick;
+
+    final static int BC_PENDINGINTENT = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, OnboardingActivity.class);
             startActivity(onboarding);
+
+
+
 
             // Close the main Activity
             finish();
@@ -152,6 +157,56 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        // Get the shared preferences
+        SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
+        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferencesScore.edit();
+
+// check if new coins
+        if(preferences.getBoolean("getsFreeCoins", true)){
+            int seconds = 3;
+            Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
+            PendingIntent pendingIntent
+                    = PendingIntent.getBroadcast(getBaseContext(),
+                    BC_PENDINGINTENT,
+                    broadcastIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+
+            ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
+                    .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                            SystemClock.elapsedRealtime() + (seconds * 1000),
+                            pendingIntent);
+
+            editor.putBoolean("getsFreeCoins", false);
+        }
+        /** checks if opened from notification */
+//        Intent intent = this.getIntent();
+//        if (intent != null && intent.getExtras() != null && intent.getExtras().containsKey("getsFreeCoins")) {
+//            if(intent.getExtras().getBoolean("getsFreeCoins")==true) {
+//                int seconds = 3;
+//                Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
+//                PendingIntent pendingIntent
+//                        = PendingIntent.getBroadcast(getBaseContext(),
+//                        BC_PENDINGINTENT,
+//                        broadcastIntent,
+//                        PendingIntent.FLAG_CANCEL_CURRENT);
+//
+//                ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
+//                        .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                                SystemClock.elapsedRealtime() + (seconds * 1000),
+//                                pendingIntent);
+//
+//                intent.removeExtra("getsFreeCoins");
+//            }
+//
+//        }
     }
 
     @Override
