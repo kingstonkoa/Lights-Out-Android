@@ -1,22 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.fullscreen.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.fullscreen.MainActivity"
+    android:background="@drawable/bg"
+    >
 
-    <TextView android:text="Lights Out Main Screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_title"
 
-        android:textSize="45dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="68dp" />
+    <ImageView
+    android:id="@+id/iv_title"
+    android:layout_width="428dp"
+    android:layout_height="64dp"
+    android:scaleType="fitXY"
+    android:src="@drawable/title"
+    android:layout_marginTop="48dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:id="@+id/iv_playgamewht"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/playgame_btn"
+        android:layout_below="@+id/iv_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
+    <ImageView
+        android:id="@+id/iv_playgameblk"
+        android:layout_width="232dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/playgame_btn_blk"
+        android:layout_below="@+id/iv_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
+
+    <ImageView
+        android:id="@+id/iv_shopwht"
+        android:layout_width="108dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/shop_btn"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/iv_playgamewht"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iv_shopblk"
+        android:layout_width="108dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/shop_btn_clk"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/iv_playgamewht"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iv_settingswht"
+        android:layout_width="212dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/settings_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
+
+    <ImageView
+        android:id="@+id/iv_settingsblk"
+        android:layout_width="212dp"
+        android:layout_height="52dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/settings_btn_clk"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp" />
 
 
 </RelativeLayout>

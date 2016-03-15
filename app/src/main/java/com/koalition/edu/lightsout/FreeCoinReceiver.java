@@ -9,34 +9,41 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
 /**
- * Created by John Israel on 3/15/2016.
+ * Created by Kingston on 3/15/2016.
  */
 public class FreeCoinReceiver extends BroadcastReceiver {
 
-    static final int NOTIF_ID = 1;
+    static int count = 0; // replace this with values from your DB
     final static int MA_PENDINGINTENT = 0;
-    static int count = 0;
+    final static int NOTIF_ID = 0;
+
+    public FreeCoinReceiver() {
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        count++;
+        // TODO: This method is called when the BroadcastReceiver is receiving
+        // an Intent broadcast.
 
-        Intent maIntent = new Intent();
-        maIntent.setClass(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, MA_PENDINGINTENT, maIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent
+                = PendingIntent.getActivity(context,
+                MA_PENDINGINTENT,
+                new Intent(context, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder notificationBuilder
+
+        NotificationCompat.Builder builder
                 = new NotificationCompat.Builder(context)
+                .setTicker("Ticker text")
+                .setContentTitle("Lights Out")
+                .setContentText("Get your 100 FREE COINS")
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("I AM A TITLE")
-                .setContentText("YOUR TROOPS ARE READY FOR BATTLE")
-                .setTicker("NOTICE ME SENPAI")
-                .setNumber(count)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
 
-        // submit our notif to notifmanager
-        NotificationManager notificationManager
-                = (NotificationManager) context.getSystemService(Service.NOTIFICATION_SERVICE);
-        notificationManager.notify(NOTIF_ID, notificationBuilder.build());
+
+
+        ((NotificationManager)context.getSystemService(Service.NOTIFICATION_SERVICE))
+                .notify(NOTIF_ID, builder.build());
     }
 }
