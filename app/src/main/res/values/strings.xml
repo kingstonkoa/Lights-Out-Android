@@ -7,4 +7,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="facebook_app_id">964870153590047</string>
     <string name="share">Share</string>
+    <string name="title_activity_settings_dialog">SettingsDialogActivity</string>
 </resources>

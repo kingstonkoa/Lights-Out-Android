@@ -40,7 +40,7 @@ public class GameOverActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferencesScore.edit();
         int highScore = preferencesScore.getInt("HighScore", -1);
         //change to store the current score also in preferenceScore
-        if(Integer.parseInt(score.getText().toString()) > highScore)
+        if(Integer.parseInt(score.getText().toString()) >= highScore)
         {
             editor.putInt("HighScore",Integer.parseInt(score.getText().toString()));
             editor.apply();

@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
             dbHelper.insertPowerUp(new PowerUp(1, "Freeze", 500));
             dbHelper.insertPowerUp(new PowerUp(2, "Slow", 300));
             dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
-            editor.putInt("HighScore",0); // STORE INITIAL SCORE OF 0
+
+            editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
+            editor.putInt("Music",1);
+            editor.putInt("SoundFX",1);
             editor.apply();
             // Start the onboarding Activity
             Intent onboarding = new Intent(this, OnboardingActivity.class);
@@ -147,6 +150,10 @@ public class MainActivity extends AppCompatActivity {
                         //=====Write down you code Finger Released code here
                         settingsButtonOnClick.setVisibility(View.INVISIBLE);
                         settingsButton.setVisibility(View.VISIBLE);
+
+                        Intent intent=new Intent(getApplicationContext(), SettingsDialogActivity.class);
+                        startActivity(intent);
+
                         return true;
                 }
                 return false;
