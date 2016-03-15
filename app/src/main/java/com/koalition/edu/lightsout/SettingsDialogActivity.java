@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class SettingsDialogActivity extends Activity {
@@ -26,6 +27,13 @@ public class SettingsDialogActivity extends Activity {
     ImageView credits;
     ImageView resetProgress;
     ImageView close;
+
+    ImageView resetQuestion;
+    ImageView cancelButton;
+    ImageView resetButton;
+
+    ImageView resetStatus;
+
     SharedPreferences preferences;
 
     @Override
@@ -43,6 +51,14 @@ public class SettingsDialogActivity extends Activity {
         credits = (ImageView) findViewById(R.id.iv_credits);;
         resetProgress = (ImageView) findViewById(R.id.iv_reset);
         close = (ImageView) findViewById(R.id.iv_close);
+
+        resetQuestion = (ImageView) findViewById(R.id.iv_reset_question);
+        cancelButton = (ImageView) findViewById(R.id.iv_cancel_button);
+        resetButton = (ImageView) findViewById(R.id.iv_reset_button);
+
+        resetStatus = (ImageView) findViewById(R.id.iv_reset_status);
+
+
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = preferences.edit();
@@ -181,10 +197,17 @@ public class SettingsDialogActivity extends Activity {
 
         });
 
+        hideResetDialog();
+        hideResetStatusDialog();
+
         resetProgress.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+               RelativeLayout ly = (RelativeLayout) findViewById(R.id.settingsLayout);
+                ly.setBackgroundResource(R.drawable.dialog_box_blank);
+                hideSettingsDialog();
+                showResetDialog();
 
-                SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
+/*                SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.putBoolean("onboarding_complete", false);
@@ -193,12 +216,67 @@ public class SettingsDialogActivity extends Activity {
                         Toast.LENGTH_LONG).show();
 
                 Intent i = new Intent(SettingsDialogActivity.this, MainActivity.class);
-                startActivity(i);
+                startActivity(i);*/
 
             }
 
         });
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.putBoolean("onboarding_complete", false);
+                editor.commit();
+
+                hideResetDialog();
+                showResetStatusDialog();
+                //finish();
+                /*Intent i = new Intent(SettingsDialogActivity.this, MainActivity.class);
+                startActivity(i);*/
+            }
+
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            finish();
+                Intent intent=new Intent(getApplicationContext(), SettingsDialogActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
     }
+
+    private void hideSettingsDialog() {
+        musicChecked.setVisibility(View.INVISIBLE);
+        musicNotChecked.setVisibility(View.INVISIBLE);
+        soundFxChecked.setVisibility(View.INVISIBLE);
+        soundFxNotChecked.setVisibility(View.INVISIBLE);
+        credits.setVisibility(View.INVISIBLE);
+        resetProgress.setVisibility(View.INVISIBLE);
     }
+    private void hideResetDialog() {
+        resetQuestion.setVisibility(View.INVISIBLE);
+        cancelButton.setVisibility(View.INVISIBLE);
+        resetButton.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void hideResetStatusDialog() {
+        resetStatus.setVisibility(View.INVISIBLE);
+    }
+    private void showResetDialog() {
+        resetQuestion.setVisibility(View.VISIBLE);
+        cancelButton.setVisibility(View.VISIBLE);
+        resetButton.setVisibility(View.VISIBLE);
+    }
+    private void showResetStatusDialog() {
+        resetStatus.setVisibility(View.VISIBLE);
+    }
+}
 
 
