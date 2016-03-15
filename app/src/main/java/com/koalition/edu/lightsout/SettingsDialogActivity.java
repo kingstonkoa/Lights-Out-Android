@@ -238,7 +238,7 @@ public class SettingsDialogActivity extends Activity {
                 editor.clear();
                 editor.putBoolean("onboarding_complete", false);
                 editor.commit();
-
+                editor.apply();
                 hideResetDialog();
                 showResetStatusDialog();
                 //finish();

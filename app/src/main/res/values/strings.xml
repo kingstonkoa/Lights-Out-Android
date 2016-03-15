@@ -8,4 +8,6 @@
     <string name="facebook_app_id">964870153590047</string>
     <string name="share">Share</string>
     <string name="title_activity_settings_dialog">SettingsDialogActivity</string>
+    <string name="title_activity_shop_main">ShopMainActivity</string>
+    <string name="title_activity_power_up_list">PowerUpListActivity</string>
 </resources>

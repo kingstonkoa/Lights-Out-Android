@@ -1,5 +1,6 @@
 package com.koalition.edu.lightsout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -9,6 +10,9 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
@@ -17,21 +21,31 @@ import com.facebook.share.widget.ShareButton;
 
 
 public class GameOverActivity extends AppCompatActivity {
-    private TextView score;
-    private TextView bestScoreText;
-    private MediaPlayer mediaPlayer;
+    TextView score;
+    ImageView bestScoreText;
+    ImageView backToMainButton;
+    ImageView backToMainButtonClicked;
+    ImageView playAgainButton;
+    ImageView playAgainButtonClicked;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        mediaPlayer = MediaPlayer.create(GameOverActivity.this, R.raw.mainmenu);
-//        mediaPlayer.start();
-
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
         score = (TextView) findViewById(R.id.tv_score);
-        bestScoreText = (TextView) findViewById(R.id.tv_bestscore);
+        bestScoreText = (ImageView) findViewById(R.id.thats_your_best_text);
+        backToMainButton = (ImageView) findViewById(R.id.back_to_main_menu_button);
+        backToMainButtonClicked = (ImageView) findViewById(R.id.back_to_main_menu_button_clicked);
+        playAgainButton = (ImageView) findViewById(R.id.play_again_button);
+        playAgainButtonClicked = (ImageView) findViewById(R.id.play_again_button_clicked);
+
+        /* hide onclick buttons**/
+        backToMainButtonClicked.setVisibility(View.INVISIBLE);
+        playAgainButtonClicked.setVisibility(View.INVISIBLE);
+        bestScoreText.setVisibility(View.INVISIBLE);
 
         SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferencesScore.edit();
@@ -41,7 +55,7 @@ public class GameOverActivity extends AppCompatActivity {
         {
             editor.putInt("HighScore",Integer.parseInt(score.getText().toString()));
             editor.apply();
-            bestScoreText.setText("That's your best score!");
+            bestScoreText.setVisibility(View.VISIBLE);
         }
 
 
@@ -52,6 +66,61 @@ public class GameOverActivity extends AppCompatActivity {
                 .setContentUrl(Uri.parse("https://www.facebook.com/LightsOutMobile"))
                 .build();
         fbShareButton.setShareContent(content);
+
+        backToMainButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+
+                        //=====Write down your Finger Pressed code here
+                        backToMainButton.setVisibility(View.INVISIBLE);
+                        backToMainButtonClicked.setVisibility(View.VISIBLE);
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+
+                        //=====Write down you code Finger Released code here
+                        backToMainButtonClicked.setVisibility(View.INVISIBLE);
+                        backToMainButton.setVisibility(View.VISIBLE);
+/*                        Intent i = new Intent(GameOverActivity.this, MainActivity.class);
+                        startActivity(i);*/
+                        finish();
+                        return true;
+                }
+                return false;
+
+            }
+        });
+
+        playAgainButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
+
+                        //=====Write down your Finger Pressed code here
+                        playAgainButton.setVisibility(View.INVISIBLE);
+                        playAgainButtonClicked.setVisibility(View.VISIBLE);
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
+
+                        //=====Write down you code Finger Released code here
+                        playAgainButtonClicked.setVisibility(View.INVISIBLE);
+                        playAgainButton.setVisibility(View.VISIBLE);
+                        /*Intent i = new Intent(GameOverActivity.this, MainActivity.class);
+                        startActivity(i);*/
+                        return true;
+                }
+                return false;
+
+            }
+        });
 
 
     }

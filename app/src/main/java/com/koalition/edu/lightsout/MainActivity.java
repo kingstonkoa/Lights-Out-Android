@@ -61,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
         if(!preferences.getBoolean("onboarding_complete",false)) {
             dbHelper = new DatabaseHelper(getBaseContext());
             dbHelper.deleteAll();
-            dbHelper.insertPowerUp(new PowerUp(1, "Freeze", 500));
-            dbHelper.insertPowerUp(new PowerUp(2, "Slow", 300));
-            dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));
+            dbHelper.insertPowerUp(new PowerUp(1, "Freeze Time", 300));
+            dbHelper.insertPowerUp(new PowerUp(2, "Brownout", 500));
+
 
             editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
             editor.putBoolean("Music", true);
@@ -138,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
                         //=====Write down you code Finger Released code here
                         shopButtonOnClick.setVisibility(View.INVISIBLE);
                         shopButton.setVisibility(View.VISIBLE);
+
+                        Intent intent=new Intent(MainActivity.this, ShopMainActivity.class);
+                        startActivity(intent);
                         return true;
                 }
                 return false;
@@ -229,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
             editor.putBoolean("getsFreeCoins", false).apply();
             /** toast */
-            Toast.makeText(getBaseContext(), "YOU GET 100 COINS NIGGUH",
+            Toast.makeText(getBaseContext(), "YOU GET FREE 100 Coins",
                     Toast.LENGTH_LONG).show();
         }
         /** checks if opened from notification */
