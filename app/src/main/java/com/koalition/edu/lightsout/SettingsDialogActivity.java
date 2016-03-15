@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class SettingsDialogActivity extends Activity {
 
@@ -25,6 +26,7 @@ public class SettingsDialogActivity extends Activity {
     ImageView credits;
     ImageView resetProgress;
     ImageView close;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class SettingsDialogActivity extends Activity {
         resetProgress = (ImageView) findViewById(R.id.iv_reset);
         close = (ImageView) findViewById(R.id.iv_close);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = preferences.edit();
         int isMusic = preferences.getInt("Music", -1);
         int isSoundFX = preferences.getInt("SoundFX", -1);
@@ -87,6 +89,7 @@ public class SettingsDialogActivity extends Activity {
 
                         //=====Write down you code Finger Released code here
                         editor.putInt("Music",0);
+                        editor.commit();
                         return true;
                 }
                 return false;
@@ -111,6 +114,7 @@ public class SettingsDialogActivity extends Activity {
 
                         //=====Write down you code Finger Released code here
                         editor.putInt("Music",1);
+                        editor.commit();
                         return true;
                 }
                 return false;
@@ -135,6 +139,7 @@ public class SettingsDialogActivity extends Activity {
 
                         //=====Write down you code Finger Released code here
                         editor.putInt("SoundFX",0);
+                        editor.commit();
                         return true;
                 }
                 return false;
@@ -159,6 +164,7 @@ public class SettingsDialogActivity extends Activity {
 
                         //=====Write down you code Finger Released code here
                         editor.putInt("SoundFX",1);
+                        editor.commit();
                         return true;
                 }
                 return false;
@@ -170,6 +176,24 @@ public class SettingsDialogActivity extends Activity {
             public void onClick(View v) {
 
                 finish();
+
+            }
+
+        });
+
+        resetProgress.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                SharedPreferences preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.putBoolean("onboarding_complete", false);
+                editor.commit();
+                Toast.makeText(getBaseContext(), "Progress has been reset",
+                        Toast.LENGTH_LONG).show();
+
+                Intent i = new Intent(SettingsDialogActivity.this, MainActivity.class);
+                startActivity(i);
 
             }
 
