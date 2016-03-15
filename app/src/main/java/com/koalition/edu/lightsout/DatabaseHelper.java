@@ -61,4 +61,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return note;
     }
+
+    public void deleteAll() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(PowerUp.TABLE_NAME, null, null);
+    }
 }

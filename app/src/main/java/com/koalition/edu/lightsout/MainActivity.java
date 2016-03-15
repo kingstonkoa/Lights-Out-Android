@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         // Check if onboarding_complete is false
         if(!preferences.getBoolean("onboarding_complete",false)) {
             dbHelper = new DatabaseHelper(getBaseContext());
+            dbHelper.deleteAll();
             dbHelper.insertPowerUp(new PowerUp(1, "Freeze", 500));
             dbHelper.insertPowerUp(new PowerUp(2, "Slow", 300));
             dbHelper.insertPowerUp(new PowerUp(3, "Distract", 400));

@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/settings_box"
     tools:context="com.koalition.edu.lightsout.SettingsDialogActivity"
+    android:id="@+id/settingsLayout"
     >
     <ImageView
         android:id="@+id/iv_close"
@@ -75,6 +76,42 @@
         android:layout_marginBottom="51dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iv_reset_question"
+        android:layout_width="308dp"
+        android:layout_height="132dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/reset_question"
+        android:layout_alignBottom="@+id/iv_sound_fx_check"
+        android:layout_toStartOf="@+id/iv_close" />
+
+    <ImageView
+        android:id="@+id/iv_cancel_button"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/reset_cancel_button"
+        android:layout_above="@+id/iv_reset"
+        android:layout_alignStart="@+id/iv_reset_question" />
+
+    <ImageView
+        android:id="@+id/iv_reset_button"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/reset_buton"
+        android:layout_above="@+id/iv_reset"
+        android:layout_alignEnd="@+id/iv_reset" />
+
+    <ImageView
+        android:id="@+id/iv_reset_status"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/notif_reset_done"
+        android:layout_alignBottom="@+id/iv_sound_fx_check"
+        android:layout_toStartOf="@+id/iv_close" />
 
 
 </RelativeLayout>
