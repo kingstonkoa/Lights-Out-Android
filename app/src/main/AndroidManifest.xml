@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="com.koalition.edu.lightsout.MyApplication"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/logo"
@@ -24,6 +25,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Splash"
             android:screenOrientation="landscape">
