@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class EasyPlayGameActivity extends Activity {
 
     TextView moneyTextView;
     TextView scoreTextView;
+    TextView deductionTextView;
 
     // timer for randomizing every randomizeSpeed
     static int RANDOMIZE_SPEED = 2000;
@@ -43,6 +46,9 @@ public class EasyPlayGameActivity extends Activity {
     ArrayList<Switch> switches;
     private Random statusRandom;
 
+    Animation slideDownAnim;
+    Animation fadeOutAnim;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,10 @@ public class EasyPlayGameActivity extends Activity {
         switchButton4 = (ImageView) findViewById(R.id.easy_button4);
         moneyTextView = (TextView) findViewById(R.id.tv_money);
         scoreTextView = (TextView) findViewById(R.id.tv_easy_score);
+        deductionTextView = (TextView) findViewById(R.id.tv_deduction);
+        slideDownAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down_deduction);
+        fadeOutAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fadeout);
+
 
         moneyValue = 100;
         scoreValue = 0;
@@ -427,7 +437,33 @@ public class EasyPlayGameActivity extends Activity {
             if(switchObject.getRoomState()==true)
                 totalPointsLost += POINTS_LOST;
         }
+        playDeductionAnimation(totalPointsLost);
         moneyValue -= totalPointsLost;
+    }
+
+    public void playDeductionAnimation(int totalPointsLost) {
+        if(totalPointsLost == 0)
+            deductionTextView.setVisibility(View.GONE);
+        else {
+            deductionTextView.setText("-"+String.format("%d", totalPointsLost));
+            deductionTextView.startAnimation(slideDownAnim);
+            slideDownAnim.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    deductionTextView.startAnimation(fadeOutAnim);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+        }
     }
 
     public void randomizeAllRoomStatus(){
