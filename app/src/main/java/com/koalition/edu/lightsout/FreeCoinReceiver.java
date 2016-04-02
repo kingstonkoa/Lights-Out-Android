@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
@@ -16,7 +17,7 @@ import android.support.v4.app.NotificationCompat;
 public class FreeCoinReceiver extends BroadcastReceiver {
 
     static int count = 0; // replace this with values from your DB
-    final static int TIMER_SEC = 10;
+    final static int TIMER_SEC = 20;
     final static int MA_PENDINGINTENT = 0;
     final static int NOTIF_ID = 0;
 
@@ -40,14 +41,16 @@ public class FreeCoinReceiver extends BroadcastReceiver {
                 .setTicker("Ticker text")
                 .setContentTitle("Lights Out")
                 .setContentText("Get your 100 FREE COINS")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.logo)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.logo))
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
 
-
-        ((NotificationManager)context.getSystemService(Service.NOTIFICATION_SERVICE))
-                .notify(NOTIF_ID, builder.build());
+        if( !MyApplication.isActivityVisible() ) {
+            ((NotificationManager) context.getSystemService(Service.NOTIFICATION_SERVICE))
+                    .notify(NOTIF_ID, builder.build());
+        }
 
         // Get the shared preferences
         SharedPreferences preferences =
@@ -56,5 +59,6 @@ public class FreeCoinReceiver extends BroadcastReceiver {
         // Set onboarding_complete to true
         preferences.edit()
                 .putBoolean("getsFreeCoins",true).apply();
+
     }
 }

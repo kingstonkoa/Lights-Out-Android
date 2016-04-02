@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50"
-        android:id="@+id/tv_score"
+        android:id="@+id/tv_easy_score"
         android:layout_gravity="center_horizontal|top"
         android:textSize="50dp"
         android:textColor="#f7f7f9"
@@ -39,7 +39,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/bestscore_txt"
         android:layout_marginTop="29dp"
-        android:layout_below="@+id/tv_score"
+        android:layout_below="@+id/tv_easy_score"
         android:layout_centerHorizontal="true" />
 
     <ImageView

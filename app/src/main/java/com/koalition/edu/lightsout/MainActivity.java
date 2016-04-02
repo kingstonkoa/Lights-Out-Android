@@ -66,9 +66,15 @@ public class MainActivity extends AppCompatActivity {
 
 
             editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
+            editor.putInt("Coins", 50);
             editor.putBoolean("Music", true);
             editor.putBoolean("SoundFX", true);
             editor.apply();
+
+            editor.putBoolean("getsFreeCoins", true);
+            editor.apply();
+
+            editor.putBoolean("onboarding_complete", false);
         }
 
         playGameButton = (ImageView) findViewById(R.id.iv_playgamewht);
@@ -110,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(onboarding);
                         }
                         else {
-                            Intent i = new Intent(MainActivity.this, GameOverActivity.class);
-                            startActivity(i);
+                            Intent intent=new Intent(getApplicationContext(), DifficultySelectionActivity.class);
+                            startActivity(intent);
                         }
                         return true;
                 }
@@ -186,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
+        MyApplication.activityResumed();
         // Get the shared preferences
 //        preferences =  getSharedPreferences("my_preferences", MODE_PRIVATE);
 
@@ -231,6 +237,9 @@ public class MainActivity extends AppCompatActivity {
                             pendingIntent);
 
             editor.putBoolean("getsFreeCoins", false).apply();
+            int currentCoins = sharedPreferences.getInt("Coins", 0);
+            editor.putInt("Coins", currentCoins+100);
+            editor.apply();
             /** toast */
             Toast.makeText(getBaseContext(), "YOU GET FREE 100 Coins",
                     Toast.LENGTH_LONG).show();
@@ -256,6 +265,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //
 //        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPaused();
     }
 
     @Override
@@ -289,4 +304,5 @@ public class MainActivity extends AppCompatActivity {
 //        super.onStop();
 //        mediaPlayer.stop();
 //    }
+
 }

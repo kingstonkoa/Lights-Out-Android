@@ -10,4 +10,6 @@
     <string name="title_activity_settings_dialog">SettingsDialogActivity</string>
     <string name="title_activity_shop_main">ShopMainActivity</string>
     <string name="title_activity_power_up_list">PowerUpListActivity</string>
+    <string name="title_activity_difficulty_selection">DifficultySelectionActivity</string>
+    <string name="title_activity_easy_play_game">EasyPlayGameActivity</string>
 </resources>

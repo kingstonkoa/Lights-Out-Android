@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/logo"
@@ -67,15 +68,19 @@
         <activity
             android:name=".ShopMainActivity"
             android:label="@string/title_activity_shop_main"
-            android:screenOrientation="landscape"
-            />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".PowerUpListActivity"
             android:label="@string/title_activity_power_up_list"
-            android:screenOrientation="landscape"
-            >
-
-        </activity>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".DifficultySelectionActivity"
+            android:label="@string/title_activity_difficulty_selection"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".EasyPlayGameActivity"
+            android:label="@string/title_activity_easy_play_game"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

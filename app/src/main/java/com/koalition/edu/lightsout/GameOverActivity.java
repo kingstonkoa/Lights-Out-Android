@@ -1,11 +1,14 @@
 package com.koalition.edu.lightsout;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
@@ -35,7 +39,7 @@ public class GameOverActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_game_over);
-        score = (TextView) findViewById(R.id.tv_score);
+        score = (TextView) findViewById(R.id.tv_easy_score);
         bestScoreText = (ImageView) findViewById(R.id.thats_your_best_text);
         backToMainButton = (ImageView) findViewById(R.id.back_to_main_menu_button);
         backToMainButtonClicked = (ImageView) findViewById(R.id.back_to_main_menu_button_clicked);
@@ -128,7 +132,33 @@ public class GameOverActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+// Get the shared preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        if(sharedPreferences.getBoolean("getsFreeCoins", false)){
+            System.out.println("dito pumasok ang koya");
+            int seconds = FreeCoinReceiver.TIMER_SEC;
+            Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
+            PendingIntent pendingIntent
+                    = PendingIntent.getBroadcast(getBaseContext(),
+                    0,
+                    broadcastIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+
+            ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
+                    .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                            SystemClock.elapsedRealtime() + (seconds * 1000),
+                            pendingIntent);
+
+            editor.putBoolean("getsFreeCoins", false).apply();
+            int currentCoins = sharedPreferences.getInt("Coins", 0);
+            editor.putInt("Coins", currentCoins+100);
+            editor.apply();
+            /** toast */
+            Toast.makeText(getBaseContext(), "YOU GET FREE 100 Coins",
+                    Toast.LENGTH_LONG).show();
+        }
         //mediaPlayer.start();
     }
 

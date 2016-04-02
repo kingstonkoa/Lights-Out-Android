@@ -239,6 +239,23 @@ public class SettingsDialogActivity extends Activity {
                 editor.putBoolean("onboarding_complete", false);
                 editor.commit();
                 editor.apply();
+
+                /** brute force **/
+                DatabaseHelper dbHelper = new DatabaseHelper(getBaseContext());
+                dbHelper.deleteAll();
+                dbHelper.insertPowerUp(new PowerUp(1, "Freeze Time", 300));
+                dbHelper.insertPowerUp(new PowerUp(2, "Brownout", 500));
+
+
+                editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
+                editor.putInt("Coins", 50);
+                editor.putBoolean("Music", true);
+                editor.putBoolean("SoundFX", true);
+                editor.apply();
+
+                editor.putBoolean("getsFreeCoins", true);
+                editor.apply();
+
                 hideResetDialog();
                 showResetStatusDialog();
                 //finish();
@@ -285,6 +302,38 @@ public class SettingsDialogActivity extends Activity {
     }
     private void showResetStatusDialog() {
         resetStatus.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Get the shared preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(sharedPreferences.getBoolean("getsFreeCoins", false)){
+            System.out.println("dito pumasok ang koya");
+            int seconds = FreeCoinReceiver.TIMER_SEC;
+            Intent broadcastIntent = new Intent(getBaseContext(), FreeCoinReceiver.class);
+            PendingIntent pendingIntent
+                    = PendingIntent.getBroadcast(getBaseContext(),
+                    0,
+                    broadcastIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+
+            ((AlarmManager) getSystemService(Service.ALARM_SERVICE))
+                    .set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                            SystemClock.elapsedRealtime() + (seconds * 1000),
+                            pendingIntent);
+
+            editor.putBoolean("getsFreeCoins", false).apply();
+            int currentCoins = sharedPreferences.getInt("Coins", 0);
+            editor.putInt("Coins", currentCoins+100);
+            editor.apply();
+            /** toast */
+            Toast.makeText(getBaseContext(), "YOU GET FREE 100 Coins",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }
 
