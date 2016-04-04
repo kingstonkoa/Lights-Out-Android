@@ -10,73 +10,73 @@
 
     <ImageView
     android:id="@+id/iv_title"
-    android:layout_width="428dp"
-    android:layout_height="64dp"
+    android:layout_width="329dp"
+    android:layout_height="52dp"
     android:scaleType="fitXY"
     android:src="@drawable/title"
-    android:layout_marginTop="48dp"
+    android:layout_marginTop="55dp"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/iv_playgamewht"
-        android:layout_width="232dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/playgame_btn"
         android:layout_below="@+id/iv_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
+        android:layout_marginTop="60dp" />
 
     <ImageView
         android:id="@+id/iv_playgameblk"
-        android:layout_width="232dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/playgame_btn_blk"
         android:layout_below="@+id/iv_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
+        android:layout_marginTop="60dp" />
 
     <ImageView
         android:id="@+id/iv_shopwht"
-        android:layout_width="108dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/shop_btn"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/iv_playgamewht"
         android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/iv_shopblk"
-        android:layout_width="108dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/shop_btn_clk"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/iv_playgamewht"
         android:layout_centerHorizontal="true" />
 
     <ImageView
         android:id="@+id/iv_settingswht"
-        android:layout_width="212dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/settings_btn"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="50dp" />
 
     <ImageView
         android:id="@+id/iv_settingsblk"
-        android:layout_width="212dp"
-        android:layout_height="52dp"
+        android:layout_width="223dp"
+        android:layout_height="58dp"
         android:scaleType="fitXY"
         android:src="@drawable/settings_btn_clk"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="50dp" />
 
 
 </RelativeLayout>
