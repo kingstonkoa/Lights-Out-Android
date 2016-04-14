@@ -48,18 +48,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public PowerUp queryPowerUp(int id){
         SQLiteDatabase db = getReadableDatabase();
-        PowerUp note = new PowerUp();
+        PowerUp powerUp = new PowerUp();
         Cursor cursor = db.query(PowerUp.TABLE_NAME, null,
                 PowerUp.COLUMN_ID + " =? ", new String[]{String.valueOf(id)},
                 null, null, null);
         if(cursor.moveToFirst()){
-            note.setId(cursor.getInt(cursor.getColumnIndex(PowerUp.COLUMN_ID)));
-            note.setTitle(cursor.getString(cursor.getColumnIndex(PowerUp.COLUMN_TITLE)));
-            note.setPrice(cursor.getInt(cursor.getColumnIndex(PowerUp.COLUMN_PRICE)));
+            powerUp.setId(cursor.getInt(cursor.getColumnIndex(PowerUp.COLUMN_ID)));
+            powerUp.setTitle(cursor.getString(cursor.getColumnIndex(PowerUp.COLUMN_TITLE)));
+            powerUp.setPrice(cursor.getInt(cursor.getColumnIndex(PowerUp.COLUMN_PRICE)));
         }
         cursor.close();
         db.close();
-        return note;
+        return powerUp;
     }
 
     public void deleteAll() {

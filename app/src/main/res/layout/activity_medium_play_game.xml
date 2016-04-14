@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.koalition.edu.lightsout.MediumPlayGameActivity"
+    android:background="@drawable/gamebgwithsky">
+
+    <ImageView
+        android:layout_width="720dip"
+        android:layout_height="333dip"
+        android:id="@+id/easy_house"
+        android:src="@drawable/gamehousenorooms"
+        android:layout_alignTop="@+id/iv_score_label"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="201dip"
+        android:layout_height="105dip"
+        android:id="@+id/easy_room1"
+        android:src="@drawable/roomplaceholder4"
+        android:layout_below="@+id/iv_money_label"
+        android:layout_toEndOf="@+id/iv_money_label"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="24dp" />
+
+    <ImageView
+        android:layout_width="201dip"
+        android:layout_height="105dip"
+        android:id="@+id/easy_room2"
+        android:src="@drawable/roomplaceholder4"
+        android:layout_alignTop="@+id/easy_room1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="26dp" />
+
+    <ImageView
+        android:layout_width="201dip"
+        android:layout_height="105dip"
+        android:id="@+id/easy_room3"
+        android:src="@drawable/roomplaceholder4"
+        android:layout_below="@+id/easy_room1"
+        android:layout_alignStart="@+id/easy_room1"
+        android:layout_marginTop="25dp" />
+
+    <ImageView
+        android:layout_width="201dip"
+        android:layout_height="105dip"
+        android:id="@+id/easy_room4"
+        android:src="@drawable/roomplaceholder4"
+        android:layout_alignTop="@+id/easy_room3"
+        android:layout_alignStart="@+id/easy_room2" />
+
+
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="76dip"
+        android:id="@+id/easy_button1"
+        android:src="@drawable/switchoff"
+        android:layout_marginStart="43dp"
+        android:layout_below="@+id/easy_house"
+        android:layout_alignStart="@+id/easy_room3" />
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="76dip"
+        android:id="@+id/easy_button2"
+        android:src="@drawable/switchoff"
+        android:layout_below="@+id/easy_house"
+        android:layout_alignEnd="@+id/easy_room3" />
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="76dip"
+        android:id="@+id/easy_button3"
+        android:src="@drawable/switchoff"
+        android:layout_alignTop="@+id/easy_button2"
+        android:layout_alignStart="@+id/easy_room4" />
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="76dip"
+        android:id="@+id/easy_button4"
+        android:src="@drawable/switchoff"
+        android:layout_alignTop="@+id/easy_button3"
+        android:layout_alignEnd="@+id/easy_room4"
+        android:layout_marginEnd="45dp" />
+
+    <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:id="@+id/iv_score_label"
+        android:src="@drawable/light_bulb_icon"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/easy_button3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#fafaf9"
+        android:textSize="40sp"
+        android:layout_alignParentTop="true"
+        android:id="@+id/tv_easy_score"
+        android:layout_alignStart="@+id/easy_button4"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="#fafaf9"
+        android:textSize="40sp"
+        android:id="@+id/tv_time"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/easy_room1" />
+
+    <ImageView
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:id="@+id/iv_money_label"
+        android:src="@drawable/light_bulb_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textColor="#fafaf9"
+        android:textSize="40sp"
+        android:id="@+id/tv_money"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/iv_money_label"
+        android:layout_marginStart="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-1"
+        android:textColor="#f0f079"
+        android:textSize="30sp"
+        android:id="@+id/tv_deduction"
+        android:layout_below="@+id/iv_money_label"
+        android:layout_alignStart="@+id/tv_money" />
+
+
+</RelativeLayout>

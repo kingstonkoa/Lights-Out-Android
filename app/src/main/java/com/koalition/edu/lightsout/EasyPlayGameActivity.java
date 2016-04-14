@@ -1,10 +1,16 @@
 package com.koalition.edu.lightsout;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
+import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EasyPlayGameActivity extends Activity {
@@ -32,6 +39,8 @@ public class EasyPlayGameActivity extends Activity {
     TextView scoreTextView;
     TextView deductionTextView;
 
+    private MediaPlayer mediaPlayer;
+
     // timer for randomizing every randomizeSpeed
     static int RANDOMIZE_SPEED = 2000;
     static int POINTS_LOST = 1;
@@ -40,6 +49,9 @@ public class EasyPlayGameActivity extends Activity {
     int time;
     int moneyValue;
     int scoreValue;
+    private boolean running;
+
+    static int VIBRATION_DURATION = 350;
     // kung nakailan na siyang sunod sunod
     int streakValue;
 
@@ -49,10 +61,17 @@ public class EasyPlayGameActivity extends Activity {
     Animation slideDownAnim;
     Animation fadeOutAnim;
 
+    SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_easy_play_game);
+        mediaPlayer = MediaPlayer.create(EasyPlayGameActivity.this, R.raw.mainmenu);
+        running = true;
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         room1Box = (ImageView) findViewById(R.id.easy_room1);
         room2Box = (ImageView) findViewById(R.id.easy_room2);
         room3Box = (ImageView) findViewById(R.id.easy_room3);
@@ -107,6 +126,11 @@ public class EasyPlayGameActivity extends Activity {
 
                     switches.get(0).setRoomState(true);
                     turnOnRoom(switches.get(0).getRoomNumber());
+
+                    // VIBRATOR TURN ON
+                    Vibrator vibrator = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    // Vibrate for 500 milliseconds
+                    vibrator.vibrate(VIBRATION_DURATION);
                 }
             }
         });
@@ -139,6 +163,10 @@ public class EasyPlayGameActivity extends Activity {
 
                     switches.get(1).setRoomState(true);
                     turnOnRoom(switches.get(1).getRoomNumber());
+                    // VIBRATOR TURN ON
+                    Vibrator vibrator = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    // Vibrate for 500 milliseconds
+                    vibrator.vibrate(VIBRATION_DURATION);
                 }
             }
         });
@@ -171,6 +199,10 @@ public class EasyPlayGameActivity extends Activity {
 
                     switches.get(2).setRoomState(true);
                     turnOnRoom(switches.get(2).getRoomNumber());
+                    // VIBRATOR TURN ON
+                    Vibrator vibrator = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    // Vibrate for 500 milliseconds
+                    vibrator.vibrate(VIBRATION_DURATION);
                 }
             }
         });
@@ -203,6 +235,10 @@ public class EasyPlayGameActivity extends Activity {
 
                     switches.get(3).setRoomState(true);
                     turnOnRoom(switches.get(3).getRoomNumber());
+                    // VIBRATOR TURN ON
+                    Vibrator vibrator = (Vibrator) getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    // Vibrate for 500 milliseconds
+                    vibrator.vibrate(VIBRATION_DURATION);
                 }
             }
         });
@@ -240,6 +276,10 @@ public class EasyPlayGameActivity extends Activity {
             case 2: room2Box.setImageResource(R.drawable.litroomplaceholder); break;
             case 3: room3Box.setImageResource(R.drawable.litroomplaceholder); break;
             case 4: room4Box.setImageResource(R.drawable.litroomplaceholder); break;
+//            case 1: room1Box.setImageResource(R.drawable.homer); break;
+//            case 2: room2Box.setImageResource(R.drawable.homer); break;
+//            case 3: room3Box.setImageResource(R.drawable.homer); break;
+//            case 4: room4Box.setImageResource(R.drawable.homer); break;
         }
     }
 
@@ -335,48 +375,48 @@ public class EasyPlayGameActivity extends Activity {
             case 1:
                 if(roomState == true)
                 {
-                    room1Box.setImageResource(R.drawable.litroomplaceholder);
+                    turnOnRoom(1);
                     //switches.get(switchNumber).setRoomState(true);
                 }
                 else
                 {
-                    room1Box.setImageResource(R.drawable.roomplaceholder4);
+                    turnOffRoom(1);
                     //switches.get(switchNumber).setRoomState(false);
                 }
                 break;
             case 2:
                 if(roomState == true)
                 {
-                    room2Box.setImageResource(R.drawable.litroomplaceholder);
+                    turnOnRoom(2);
                     //switches.get(switchNumber).setRoomState(true);
                 }
                 else
                 {
-                    room2Box.setImageResource(R.drawable.roomplaceholder4);
+                    turnOffRoom(2);
                     //switches.get(switchNumber).setRoomState(false);
                 }
                 break;
             case 3:
                 if(roomState == true)
                 {
-                    room3Box.setImageResource(R.drawable.litroomplaceholder);
+                    turnOnRoom(3);
                     //switches.get(switchNumber).setRoomState(true);
                 }
                 else
                 {
-                    room3Box.setImageResource(R.drawable.roomplaceholder4);
+                    turnOffRoom(3);
                     //switches.get(switchNumber).setRoomState(false);
                 }
                 break;
             case 4:
                 if(roomState == true)
                 {
-                    room4Box.setImageResource(R.drawable.litroomplaceholder);
+                    turnOnRoom(4);
                     //switches.get(switchNumber).setRoomState(true);
                 }
                 else
                 {
-                    room4Box.setImageResource(R.drawable.roomplaceholder4);
+                    turnOffRoom(4);
                     //switches.get(switchNumber).setRoomState(false);
                 }
                 break;
@@ -406,25 +446,31 @@ public class EasyPlayGameActivity extends Activity {
 
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
+
     Runnable timerRunnable = new Runnable() {
 
         @Override
         public void run() {
-            int seconds = time;
-            // for testing only
-            TextView timeTextView = (TextView) findViewById(R.id.tv_time);
-            timeTextView.setText(String.format("%d",seconds));
-            time++;
+            if(running) {
+                int seconds = time;
+                // for testing only
+                TextView timeTextView = (TextView) findViewById(R.id.tv_time);
+                timeTextView.setText(String.format("%d", seconds));
+                time++;
 
-            // TODO randomize room status
-            randomizeAllRoomStatus();
-            updateMoneyValue();
+                // TODO randomize room status
+                randomizeAllRoomStatus();
+                updateMoneyValue();
 
-            updateHUD(moneyValue, scoreValue);
+                updateHUD(moneyValue, scoreValue);
 
-            timerHandler.postDelayed(this, RANDOMIZE_SPEED);
+
+                timerHandler.postDelayed(this, RANDOMIZE_SPEED);
+            }
         }
     };
+
+
 
     public void updateHUD(int updatedMoney, int updatedScore){
         moneyTextView.setText(String.format("%d", updatedMoney));
@@ -432,6 +478,7 @@ public class EasyPlayGameActivity extends Activity {
     }
 
     public void updateMoneyValue(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         int totalPointsLost=0;
         for(Switch switchObject : switches){
             if(switchObject.getRoomState()==true)
@@ -439,6 +486,17 @@ public class EasyPlayGameActivity extends Activity {
         }
         playDeductionAnimation(totalPointsLost);
         moneyValue -= totalPointsLost;
+
+        if(moneyValue <= 0) {
+            running = false;
+            System.out.println("SCORE " +scoreValue);
+            editor.putInt("CurrentScore", scoreValue);
+            editor.apply();
+            System.out.println("SCORE2 " + scoreValue);
+            Intent intent=new Intent(EasyPlayGameActivity.this, GameOverActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void playDeductionAnimation(int totalPointsLost) {

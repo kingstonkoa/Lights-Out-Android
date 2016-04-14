@@ -66,16 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
 
             editor.putInt("HighScore", 0); // STORE INITIAL SCORE OF 0
+            editor.putInt("CurrentScore", 0);
             editor.putInt("Coins", 50);
             editor.putBoolean("Music", true);
             editor.putBoolean("SoundFX", true);
+            editor.putInt("powerup1Count", 0);
+            editor.putInt("powerup2Count", 0);
             editor.apply();
 
             editor.putBoolean("getsFreeCoins", true);
             editor.apply();
-
             editor.putBoolean("onboarding_complete", false);
         }
+
+
 
         playGameButton = (ImageView) findViewById(R.id.iv_playgamewht);
         shopButton = (ImageView) findViewById(R.id.iv_shopwht);

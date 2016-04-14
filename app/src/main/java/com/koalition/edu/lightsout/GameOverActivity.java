@@ -31,6 +31,7 @@ public class GameOverActivity extends AppCompatActivity {
     ImageView backToMainButtonClicked;
     ImageView playAgainButton;
     ImageView playAgainButtonClicked;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -51,13 +52,16 @@ public class GameOverActivity extends AppCompatActivity {
         playAgainButtonClicked.setVisibility(View.INVISIBLE);
         bestScoreText.setVisibility(View.INVISIBLE);
 
-        SharedPreferences preferencesScore = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferencesScore.edit();
-        int highScore = preferencesScore.getInt("HighScore", -1);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int highScore = sharedPreferences.getInt("HighScore", -1);
+        int currentScore = sharedPreferences.getInt("CurrentScore", -5);
+        System.out.println("SEX "+currentScore);
         //change to store the current score also in preferenceScore
-        if(Integer.parseInt(score.getText().toString()) >= highScore)
+        score.setText(String.valueOf(currentScore));
+        if(currentScore >= highScore)
         {
-            editor.putInt("HighScore",Integer.parseInt(score.getText().toString()));
+            editor.putInt("HighScore",currentScore);
             editor.apply();
             bestScoreText.setVisibility(View.VISIBLE);
         }

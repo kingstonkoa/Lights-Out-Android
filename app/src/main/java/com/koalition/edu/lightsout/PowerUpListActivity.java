@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class PowerUpListActivity extends Activity {
 
+    DatabaseHelper dbHelper;
     ImageView powerUpHead;
     ImageView backButton;
     ImageView backButtonOnClick;
@@ -34,6 +35,7 @@ public class PowerUpListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_power_up_list);
 
+        dbHelper = new DatabaseHelper(getBaseContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -72,13 +74,14 @@ public class PowerUpListActivity extends Activity {
                         freezePowerUpButton.setVisibility(View.VISIBLE);
 
                         int currentCoins = sharedPreferences.getInt("Coins", 0);
-                        if (currentCoins > 300) {
-                            editor.putInt("Coins", currentCoins - 300);
+                        if (currentCoins > dbHelper.queryPowerUp(1).getPrice()) {
+                            editor.putInt("Coins", currentCoins - dbHelper.queryPowerUp(1).getPrice());
+                            editor.putInt("powerup1Count", sharedPreferences.getInt("powerup1Count", 0)+1);
                             editor.apply();
                             playerBalance.setText(String.valueOf(sharedPreferences.getInt("Coins", 0)));
 
 
-                            Toast.makeText(getBaseContext(), "Obtained a Freeze Time powerup!",
+                            Toast.makeText(getBaseContext(), "Obtained a Freeze Time powerup!"+ "\n current: "+ sharedPreferences.getInt("powerup1Count",0),
                                     Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(getBaseContext(), "Not enough coins :(",
@@ -111,12 +114,13 @@ public class PowerUpListActivity extends Activity {
                         brownoutPowerUpButton.setVisibility(View.VISIBLE);
 
                         int currentCoins = sharedPreferences.getInt("Coins", 0);
-                        if (currentCoins > 500) {
-                            editor.putInt("Coins", currentCoins - 500);
+                        if (currentCoins > dbHelper.queryPowerUp(2).getPrice()) {
+                            editor.putInt("Coins", currentCoins - dbHelper.queryPowerUp(2).getPrice());
+                            editor.putInt("powerup2Count", sharedPreferences.getInt("powerup2Count", 0)+1);
                             editor.apply();
                             playerBalance.setText(String.valueOf(sharedPreferences.getInt("Coins", 0)));
 
-                            Toast.makeText(getBaseContext(), "Obtained a Brownout powerup!",
+                            Toast.makeText(getBaseContext(), "Obtained a Brownout powerup!" + "\n current: "+ sharedPreferences.getInt("powerup2Count",0),
                                     Toast.LENGTH_SHORT).show();
                         } else
                             Toast.makeText(getBaseContext(), "Not enough coins :(",
