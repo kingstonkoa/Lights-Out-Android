@@ -12,4 +12,5 @@
     <string name="title_activity_power_up_list">PowerUpListActivity</string>
     <string name="title_activity_difficulty_selection">DifficultySelectionActivity</string>
     <string name="title_activity_easy_play_game">EasyPlayGameActivity</string>
+    <string name="title_activity_medium_play_game">MediumPlayGameActivity</string>
 </resources>

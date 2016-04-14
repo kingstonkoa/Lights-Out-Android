@@ -26,7 +26,28 @@
         android:layout_height="21dp"
         android:scaleType="fitXY"
         android:src="@drawable/credits_btn"
-        android:layout_marginBottom="28dp" />
+        android:layout_below="@+id/iv_close"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/iv_mediumDifficulty"
+        android:layout_width="129dp"
+        android:layout_height="21dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/credits_btn"
+        android:layout_marginTop="77dp"
+        android:layout_below="@+id/iv_easyDifficulty"
+        android:layout_alignStart="@+id/iv_easyDifficulty" />
+
+    <ImageView
+        android:id="@+id/iv_hardDifficulty"
+        android:layout_width="129dp"
+        android:layout_height="21dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/credits_btn"
+        android:layout_below="@+id/iv_mediumDifficulty"
+        android:layout_alignStart="@+id/iv_mediumDifficulty"
+        android:layout_marginTop="81dp" />
 
 
 </RelativeLayout>

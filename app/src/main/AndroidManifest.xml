@@ -3,9 +3,10 @@
     package="com.koalition.edu.lightsout">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name="com.koalition.edu.lightsout.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:debuggable="true"
         android:icon="@mipmap/logo"
@@ -25,7 +26,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Splash"
             android:screenOrientation="landscape">
@@ -81,7 +81,12 @@
         <activity
             android:name=".EasyPlayGameActivity"
             android:label="@string/title_activity_easy_play_game"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MediumPlayGameActivity"
+            android:label="@string/title_activity_medium_play_game"
+            android:screenOrientation="landscape"
+            ></activity>
     </application>
 
 </manifest>

@@ -98,7 +98,7 @@ public class OnboardingActivity extends FragmentActivity {
                 .putBoolean("onboarding_complete",true).apply();
 
         // Launch the main Activity, called MainActivity
-        Intent main = new Intent(this, GameOverActivity.class);
+        Intent main = new Intent(this, EasyPlayGameActivity.class);
         startActivity(main);
 
         // Close the OnboardingActivity

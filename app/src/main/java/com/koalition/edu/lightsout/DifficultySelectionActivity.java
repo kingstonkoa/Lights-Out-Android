@@ -12,6 +12,8 @@ public class DifficultySelectionActivity extends Activity {
 
     ImageView close;
     ImageView easyImageView;
+    ImageView mediumImageView;
+    ImageView hardImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,26 @@ public class DifficultySelectionActivity extends Activity {
         setContentView(R.layout.activity_difficulty_selection);
 
         easyImageView = (ImageView) findViewById(R.id.iv_easyDifficulty);
+        mediumImageView = (ImageView) findViewById(R.id.iv_mediumDifficulty);
+        hardImageView = (ImageView) findViewById(R.id.iv_hardDifficulty);
+
         easyImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startEasyGameIntent = new Intent(getBaseContext(), EasyPlayGameActivity.class);
+                startActivity(startEasyGameIntent);
+            }
+        });
+
+        mediumImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startMediumGameIntent = new Intent(getBaseContext(), MediumPlayGameActivity.class);
+                startActivity(startMediumGameIntent);
+            }
+        });
+
+        hardImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startEasyGameIntent = new Intent(getBaseContext(), EasyPlayGameActivity.class);
