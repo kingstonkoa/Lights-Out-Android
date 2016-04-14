@@ -1,47 +1,47 @@
 [
     {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\usersettings_fragment.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\usersettings_fragment.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_small.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_small.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_login_fragment.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_login_fragment.xml"
-    },
-    {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_large.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_large.xml"
-    },
-    {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_small.xml",
         "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_white_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\usersettings_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\usersettings_fragment.xml"
     },
     {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_round.xml",
         "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_round.xml"
     },
     {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\main.xml"
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_large.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_white_large.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_small.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_white_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_large.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_large.xml"
     },
     {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\rps_fragment.xml",
         "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\rps_fragment.xml"
     },
     {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_tooltip_bubble.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_activity_layout.xml",
         "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_activity_layout.xml"
     },
     {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_tooltip_bubble.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\rps_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\rps_fragment.xml"
     },
     {
-        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\content_fragment.xml",
-        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\content_fragment.xml"
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\main.xml"
     },
     {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_large.xml",
@@ -50,5 +50,57 @@
     {
         "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_round.xml",
         "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_white_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_activity_layout.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_activity_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\usersettings_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\usersettings_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_login_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_small.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_round.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_white_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_large.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_large.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\content_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\content_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_round.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_small.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\messenger_button_send_blue_small.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_login_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_tooltip_bubble.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook\\4.2.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\build\\intermediates\\res\\merged\\debug\\layout\\content_fragment.xml",
+        "source": "C:\\Users\\Jolo Simeon\\Projects\\LightsOutGame\\Lights-Out-Android\\samples\\RPSSample\\res\\layout\\content_fragment.xml"
     }
 ]
