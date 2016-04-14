@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EasyPlayGameActivity extends Activity {
@@ -40,16 +39,28 @@ public class EasyPlayGameActivity extends Activity {
     TextView deductionTextView;
 
     private MediaPlayer mediaPlayer;
+    private int numOfRooms;
 
+    // GAME VARIABLES
     // timer for randomizing every randomizeSpeed
     static int RANDOMIZE_SPEED = 2000;
     static int POINTS_LOST = 1;
     static int POINTS_GAINED = 10;
     static int POSSIBLE_LIGHTS_ON = 2;
-    int time;
-    int moneyValue;
-    int scoreValue;
+
+    static int STARTING_COINS = 100;
+
+    //HUD
+    private int time;
+    private int moneyValue;
+    private int scoreValue;
+
+    // For controlling thread
     private boolean running;
+
+    //Freeze powerup stuff
+    private boolean ifFrozen;
+    private int endOfFreezing;
 
     static int VIBRATION_DURATION = 350;
     // kung nakailan na siyang sunod sunod
@@ -62,6 +73,7 @@ public class EasyPlayGameActivity extends Activity {
     Animation fadeOutAnim;
 
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -71,7 +83,7 @@ public class EasyPlayGameActivity extends Activity {
         mediaPlayer = MediaPlayer.create(EasyPlayGameActivity.this, R.raw.mainmenu);
         running = true;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor = sharedPreferences.edit();
         room1Box = (ImageView) findViewById(R.id.easy_room1);
         room2Box = (ImageView) findViewById(R.id.easy_room2);
         room3Box = (ImageView) findViewById(R.id.easy_room3);
@@ -86,15 +98,22 @@ public class EasyPlayGameActivity extends Activity {
         slideDownAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.slide_down_deduction);
         fadeOutAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fadeout);
 
+        numOfRooms = 4;
 
-        moneyValue = 100;
+        // HUD
+        moneyValue = STARTING_COINS;
         scoreValue = 0;
         updateHUD(moneyValue, scoreValue);
+
+        // powerups stuff fuck you
+        ifFrozen = false;
+        endOfFreezing = -1;
 
         statusRandom = new Random();
         // timer for randomizing every randomizeSpeed
         time = 0;
-        timerHandler.postDelayed(timerRunnable, 0);
+        randomizeLitRoomHandler.postDelayed(randomizeLitRoomRunnable, 0);
+        hudUpdateHandler.postDelayed(hudUpdateRunnable, 0);
         refreshSwitches();
 
 
@@ -232,7 +251,7 @@ public class EasyPlayGameActivity extends Activity {
                     turnOffRoom(switches.get(3).getRoomNumber());
                 } else if (switches.get(3).isRoomState() == false) {
                     streakValue=0;
-
+activateBrownOut();
                     switches.get(3).setRoomState(true);
                     turnOnRoom(switches.get(3).getRoomNumber());
                     // VIBRATOR TURN ON
@@ -445,9 +464,25 @@ public class EasyPlayGameActivity extends Activity {
     }
 
     //runs without a timer by reposting this handler at the end of the runnable
-    Handler timerHandler = new Handler();
+    Handler randomizeLitRoomHandler = new Handler();
+    Runnable randomizeLitRoomRunnable = new Runnable() {
 
-    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if(running) {
+                // TODO randomize room status
+                randomizeAllRoomStatus();
+
+                randomizeLitRoomHandler.postDelayed(this, RANDOMIZE_SPEED);
+            }
+        }
+    };
+
+    //runs without a timer by reposting this handler at the end of the runnable
+
+    // every when does SCORE and MONEY MINUS update
+    Handler hudUpdateHandler = new Handler();
+    Runnable hudUpdateRunnable = new Runnable() {
 
         @Override
         public void run() {
@@ -459,17 +494,27 @@ public class EasyPlayGameActivity extends Activity {
                 time++;
 
                 // TODO randomize room status
-                randomizeAllRoomStatus();
-                updateMoneyValue();
+                if( !ifFrozen ) {
+                    updateMoneyValue();
+                }else checkIfFrozenTimesUp();
 
                 updateHUD(moneyValue, scoreValue);
 
-
-                timerHandler.postDelayed(this, RANDOMIZE_SPEED);
+                int timeToReact = 1000;
+                randomizeLitRoomHandler.postDelayed(this, timeToReact);
             }
         }
     };
 
+
+    private boolean checkIfFrozenTimesUp() {
+        if(time == endOfFreezing) {
+            ifFrozen = false;
+            endOfFreezing = -1;
+            return false;
+        }
+        else return true;
+    }
 
 
     public void updateHUD(int updatedMoney, int updatedScore){
@@ -503,7 +548,7 @@ public class EasyPlayGameActivity extends Activity {
         if(totalPointsLost == 0)
             deductionTextView.setVisibility(View.GONE);
         else {
-            deductionTextView.setText("-"+String.format("%d", totalPointsLost));
+            deductionTextView.setText("-" + String.format("%d", totalPointsLost));
             deductionTextView.startAnimation(slideDownAnim);
             slideDownAnim.setAnimationListener(new Animation.AnimationListener() {
                 @Override
@@ -549,5 +594,27 @@ public class EasyPlayGameActivity extends Activity {
             } else break;
         }
     }
+
+    // POWERUPS
+    public void activateFreezeTime(){ //because time is money
+        int numOfFreezeTime = sharedPreferences.getInt("powerup1Count", 0);
+        editor.putInt("powerup1Count", numOfFreezeTime --);
+        ifFrozen = true;
+
+        Toast.makeText(getBaseContext(), "LET IT GO?? LET IT GO???",
+                Toast.LENGTH_SHORT).show();
+
+        // BECOZ 5 SECONDS YUNG TAGAL NG FREEZING
+        endOfFreezing = time+5;
+    }
+
+    public void activateBrownOut(){
+        for(int i=0; i<numOfRooms; i++)
+            updateComponents(i, i, !switches.get(i).getSwitchState(), false);
+    }
+
+
+
+
 
 }
