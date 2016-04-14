@@ -42,7 +42,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.+'
     compile 'com.ogaclejapan.smarttablayout:library:1.2.1@aar'
     compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
 
 }
